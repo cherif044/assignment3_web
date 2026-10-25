@@ -21,7 +21,8 @@ APIs USED (all free and public, no API keys needed)
    a 3-day forecast. The card colour changes with the weather and day/night.
 
 3. DummyJSON Quotes API     https://dummyjson.com/quotes/random
-   Live dashboard -> Quote: a random motivational quote with New quote,
+   Live dashboard -> Quote: a random motivational quote (gloomy ones are
+   skipped automatically) with New quote,
    Copy and Share buttons.
 
 4. Hacker News Search API (Algolia)   https://hn.algolia.com/api

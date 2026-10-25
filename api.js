@@ -96,9 +96,17 @@ const api = (() => {
         return fetchJSON(`https://api.open-meteo.com/v1/forecast?${params}`);
     }
 
-    // API 3: DummyJSON — a random quote (the timestamp stops the browser reusing an old one)
-    function getRandomQuote() {
-        return fetchJSON(`https://dummyjson.com/quotes/random?t=${Date.now()}`);
+    // API 3: DummyJSON — a random quote (the timestamp stops the browser reusing an old one).
+    // The API has no "motivational" category, so a few tries skip the gloomy ones.
+    const GLOOMY = /\b(die|dies|died|death|dead|kill|war|hate|suicide|grave)\b/i;
+
+    async function getRandomQuote() {
+        let quote;
+        for (let attempt = 0; attempt < 4; attempt++) {
+            quote = await fetchJSON(`https://dummyjson.com/quotes/random?t=${Date.now()}`);
+            if (!GLOOMY.test(quote.quote)) break;
+        }
+        return quote;
     }
 
     // API 4: Hacker News (Algolia) — newest popular stories with the topic in the title
