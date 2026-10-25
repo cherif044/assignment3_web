@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Portfolio of Cherif Mikhail, Computer Science student at AUC, with live GitHub, weather, quote and tech news data.">
     <title>Cherif Mikhail | Portfolio</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%231f5d8c'/><text x='50%' y='56%' text-anchor='middle' dominant-baseline='middle' font-family='Arial' font-weight='700' font-size='28' fill='white'>CM</text></svg>">
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="styles.css">
     <!-- Order matters: data layer, then the live widgets, then page interactions -->
     <script src="api.js" defer></script>
@@ -45,7 +45,8 @@
             <p class="eyebrow">PERSONAL PROFILE</p>
             <h1>Cherif Mikhail</h1>
             <p class="title">Computer Science Student at AUC</p>
-            <p class="typed-line" aria-label="Web developer, database designer, automation builder, problem solver">
+            <p class="typed-line">
+                <span class="visually-hidden">Web developer, database designer, automation builder, problem solver</span>
                 <span id="typed-role" aria-hidden="true">Web Developer</span><span class="caret" aria-hidden="true"></span>
             </p>
             <p class="bio">
@@ -233,7 +234,7 @@
                         <input id="city-input" name="city" type="text" placeholder="Search any city…" autocomplete="off" required>
                         <button type="submit" class="button">Search</button>
                     </form>
-                    <div class="city-chips" aria-label="Quick city picks">
+                    <div class="city-chips" role="group" aria-label="Quick city picks">
                         <button type="button" class="chip" data-city="Cairo">Cairo</button>
                         <button type="button" class="chip" data-city="London">London</button>
                         <button type="button" class="chip" data-city="New York">New York</button>
@@ -261,10 +262,10 @@
                         <span class="live-badge">Live</span>
                     </div>
                     <div class="tabs" role="tablist" aria-label="News topics">
-                        <button type="button" role="tab" class="tab" data-topic="AI" aria-selected="true">AI</button>
-                        <button type="button" role="tab" class="tab" data-topic="JavaScript" aria-selected="false">Web Dev</button>
-                        <button type="button" role="tab" class="tab" data-topic="database" aria-selected="false">Databases</button>
-                        <button type="button" role="tab" class="tab" data-topic="security" aria-selected="false">Security</button>
+                        <button type="button" role="tab" aria-controls="news-output" class="tab" data-topic="AI" aria-selected="true">AI</button>
+                        <button type="button" role="tab" aria-controls="news-output" class="tab" data-topic="JavaScript" aria-selected="false">Web Dev</button>
+                        <button type="button" role="tab" aria-controls="news-output" class="tab" data-topic="database" aria-selected="false">Databases</button>
+                        <button type="button" role="tab" aria-controls="news-output" class="tab" data-topic="security" aria-selected="false">Security</button>
                     </div>
                     <div id="news-output" class="news-list" role="tabpanel" aria-live="polite"></div>
                 </section>
