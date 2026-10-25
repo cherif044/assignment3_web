@@ -3,139 +3,301 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cherif Mikhail CV</title>
+    <meta name="description" content="Portfolio of Cherif Mikhail, Computer Science student at AUC, with live GitHub, weather, quote and tech news data.">
+    <title>Cherif Mikhail | Portfolio</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%231f5d8c'/><text x='50%' y='56%' text-anchor='middle' dominant-baseline='middle' font-family='Arial' font-weight='700' font-size='28' fill='white'>CM</text></svg>">
     <link rel="stylesheet" href="styles.css">
+    <!-- Order matters: data layer, then the live widgets, then page interactions -->
+    <script src="api.js" defer></script>
+    <script src="widgets.js" defer></script>
     <script src="script.js" defer></script>
 </head>
 <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <div class="scroll-progress" aria-hidden="true"><span id="scroll-progress-bar"></span></div>
+
+    <!-- Sticky navigation shared by every section -->
+    <nav class="site-nav" aria-label="Main navigation">
+        <div class="nav-inner">
+            <a href="#home" class="brand" aria-label="Back to top">CM<span>.</span></a>
+            <button type="button" id="menu-toggle" class="menu-toggle" aria-expanded="false" aria-controls="nav-links">
+                <span class="menu-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Open menu</span>
+            </button>
+            <ul id="nav-links" class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills-section">Skills</a></li>
+                <li><a href="#projects-section">Projects</a></li>
+                <li><a href="#live">Live Data</a></li>
+                <li><a href="#contact-section">Contact</a></li>
+                <li>
+                    <button type="button" id="theme-toggle" class="theme-toggle" aria-pressed="false">Switch to dark mode</button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
     <!-- The intro at the top of the page -->
-    <header class="top-section">
+    <header id="home" class="top-section">
         <img src="images/avatar.jpeg" alt="Professional avatar of Cherif Mikhail" class="profile-image">
-        <div>
+        <div class="hero-text">
             <p class="eyebrow">PERSONAL PROFILE</p>
             <h1>Cherif Mikhail</h1>
             <p class="title">Computer Science Student at AUC</p>
+            <p class="typed-line" aria-label="Web developer, database designer, automation builder, problem solver">
+                <span id="typed-role" aria-hidden="true">Web Developer</span><span class="caret" aria-hidden="true"></span>
+            </p>
             <p class="bio">
                 I am a Computer Science student at The American University in Cairo.
                 I am interested in web systems, databases, automation, and building
                 simple useful projects that solve real problems.
             </p>
+            <p id="welcome-message" class="welcome-message" role="status"></p>
+            <div class="hero-actions">
+                <a href="#projects-section" class="button">View my projects</a>
+                <button type="button" id="download-cv" class="button button-secondary">Download CV (PDF)</button>
+            </div>
+            <ul class="hero-stats" aria-label="Quick facts">
+                <li><strong id="stat-repos">–</strong><span>public repos</span></li>
+                <li><strong id="stat-languages">–</strong><span>languages used</span></li>
+                <li><strong>4</strong><span>live APIs on this page</span></li>
+            </ul>
         </div>
     </header>
 
-    <!-- Small controls for the welcome note and page theme -->
-    <div class="page-controls" aria-label="Page controls">
-        <p id="welcome-message" class="welcome-message" role="status"></p>
-        <button type="button" id="theme-toggle" class="button button-secondary" aria-pressed="false">Switch to dark mode</button>
-    </div>
+    <main id="main-content">
+        <!-- About: education, experience and certifications from my CV -->
+        <div id="about" class="section-group">
+            <p class="group-label reveal">About me</p>
+            <div class="grid-2">
+                <section id="education-section" class="reveal">
+                    <h2>Education</h2>
+                    <div class="item">
+                        <h3>The American University in Cairo</h3>
+                        <p>Bachelor's Degree in Computer Science</p>
+                    </div>
+                    <div class="item">
+                        <h3>BRS School</h3>
+                        <p>High School Education</p>
+                    </div>
+                </section>
 
-    <!-- The usual CV sections start here -->
-    <main>
-        <section id="education-section">
-            <h2>Education</h2>
-            <div class="item">
-                <h3>The American University in Cairo</h3>
-                <p>Bachelor's Degree in Computer Science</p>
-            </div>
-            <div class="item">
-                <h3>BRS School</h3>
-                <p>High School Education</p>
-            </div>
-        </section>
+                <section id="experience-section" class="reveal">
+                    <h2>Experience</h2>
+                    <div class="item">
+                        <h3>AXA Internship</h3>
+                        <p>One-month internship in August 2025.</p>
+                    </div>
+                    <div class="item">
+                        <h3>ArpuPlus Internship</h3>
+                        <p>One-month internship in August 2026.</p>
+                    </div>
+                </section>
 
-        <section id="skills-section">
+                <section id="certifications-section" class="span-2 reveal">
+                    <div class="section-heading">
+                        <h2>Certifications and Achievements</h2>
+                        <button type="button" class="section-toggle" aria-expanded="true" aria-controls="certifications-content">Hide</button>
+                    </div>
+                    <div id="certifications-content" class="section-content cards-3">
+                        <div class="item">
+                            <h3>SQL Fundamentals Certificate</h3>
+                            <p>Completed introductory training covering database tables, SELECT queries, joins, and basic data organization.</p>
+                        </div>
+                        <div class="item">
+                            <h3>Web Development Course Project</h3>
+                            <p>Created and published a personal CV website using semantic HTML, a separate CSS file, and responsive page styling.</p>
+                        </div>
+                        <div class="item">
+                            <h3>AUC Computer Science Coursework</h3>
+                            <p>Completed coursework and assignments involving programming logic, problem solving, databases, and web systems.</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <section id="skills-section" class="reveal">
             <div class="section-heading">
                 <h2>Skills</h2>
                 <button type="button" class="section-toggle" aria-expanded="true" aria-controls="skills-content">Hide</button>
             </div>
             <div id="skills-content" class="section-content">
-            <ul class="skills-list">
-                <li>C++</li>
-                <li>SQL</li>
-                <li>n8n</li>
-                <li>HTML</li>
-                <li>CSS</li>
-                <li>GitHub</li>
-                <li>Problem Solving</li>
-                <li>Database Design</li>
-            </ul>
-            <!-- New skills show up in the list above -->
-            <form id="skill-form" class="skill-form">
-                <label for="skill-input">Add a skill</label>
-                <div class="inline-form">
-                    <input id="skill-input" name="skill" type="text" maxlength="40" placeholder="e.g. JavaScript" required>
-                    <button type="submit" class="button">Add skill</button>
-                </div>
-                <p id="skill-feedback" class="form-feedback" aria-live="polite"></p>
-            </form>
+                <ul class="skills-list">
+                    <li>C++</li>
+                    <li>SQL</li>
+                    <li>n8n</li>
+                    <li>HTML</li>
+                    <li>CSS</li>
+                    <li>JavaScript</li>
+                    <li>REST APIs</li>
+                    <li>GitHub</li>
+                    <li>Problem Solving</li>
+                    <li>Database Design</li>
+                </ul>
+                <!-- New skills show up in the list above and are remembered on this browser -->
+                <form id="skill-form" class="skill-form">
+                    <label for="skill-input">Add a skill</label>
+                    <div class="inline-form">
+                        <input id="skill-input" name="skill" type="text" maxlength="40" placeholder="e.g. Python" required>
+                        <button type="submit" class="button">Add skill</button>
+                    </div>
+                    <p id="skill-feedback" class="form-feedback" aria-live="polite"></p>
+                </form>
             </div>
         </section>
 
-        <section id="projects-section">
+        <section id="projects-section" class="reveal">
             <div class="section-heading">
                 <h2>Projects</h2>
                 <button type="button" class="section-toggle" aria-expanded="true" aria-controls="projects-content">Hide</button>
             </div>
             <div id="projects-content" class="section-content">
-            <div class="item">
-                <h3>Student Course Planner</h3>
-                <p>Designed a simple course planning page to help students organize current courses, credit hours, and weekly study priorities.</p>
-                <!-- Extra project notes stay tucked away until clicked -->
-                <button type="button" class="project-toggle" aria-expanded="false">Show project details</button>
-                <p class="project-details" hidden>Focused on clear course organization, credit-hour tracking, and weekly study planning in one place.</p>
-            </div>
-            <div class="item">
-                <h3>Library Database System</h3>
-                <p>Built a small SQL database for books, students, borrowing records, and search queries using clear table relationships.</p>
-                <button type="button" class="project-toggle" aria-expanded="false">Show project details</button>
-                <p class="project-details" hidden>Organized library data around related records for books, students, and borrowing activity.</p>
-            </div>
-            <div class="item">
-                <h3>Internship Task Automation</h3>
-                <p>Created an n8n workflow concept for tracking form submissions, sending email updates, and saving records automatically.</p>
-                <button type="button" class="project-toggle" aria-expanded="false">Show project details</button>
-                <p class="project-details" hidden>Connected form submissions to email notifications and automatic record keeping.</p>
-            </div>
+                <h3 class="sub-heading">Featured projects</h3>
+                <div class="cards-3">
+                    <div class="item">
+                        <h3>Student Course Planner</h3>
+                        <p>Designed a simple course planning page to help students organize current courses, credit hours, and weekly study priorities.</p>
+                        <!-- Extra project notes stay tucked away until clicked -->
+                        <button type="button" class="project-toggle" aria-expanded="false">Show project details</button>
+                        <p class="project-details" hidden>Focused on clear course organization, credit-hour tracking, and weekly study planning in one place.</p>
+                    </div>
+                    <div class="item">
+                        <h3>Library Database System</h3>
+                        <p>Built a small SQL database for books, students, borrowing records, and search queries using clear table relationships.</p>
+                        <button type="button" class="project-toggle" aria-expanded="false">Show project details</button>
+                        <p class="project-details" hidden>Organized library data around related records for books, students, and borrowing activity.</p>
+                    </div>
+                    <div class="item">
+                        <h3>Internship Task Automation</h3>
+                        <p>Created an n8n workflow concept for tracking form submissions, sending email updates, and saving records automatically.</p>
+                        <button type="button" class="project-toggle" aria-expanded="false">Show project details</button>
+                        <p class="project-details" hidden>Connected form submissions to email notifications and automatic record keeping.</p>
+                    </div>
+                </div>
+
+                <!-- API 1: GitHub. Filled in by widgets.js -->
+                <div class="github-block">
+                    <div class="block-heading">
+                        <h3 class="sub-heading">From my GitHub</h3>
+                        <span class="live-badge">Live</span>
+                    </div>
+                    <p class="block-intro">Pulled live from GitHub every time the page loads, so this list is always up to date.</p>
+
+                    <div class="github-layout">
+                        <div class="panel">
+                            <h4>Languages I code in</h4>
+                            <div id="github-languages" aria-live="polite"></div>
+                        </div>
+                        <div>
+                            <div class="repo-controls">
+                                <label class="visually-hidden" for="repo-search">Search repositories</label>
+                                <input id="repo-search" type="search" placeholder="Search repositories…">
+                                <label class="visually-hidden" for="repo-language">Filter by language</label>
+                                <select id="repo-language">
+                                    <option value="">All languages</option>
+                                </select>
+                                <label class="visually-hidden" for="repo-sort">Sort repositories</label>
+                                <select id="repo-sort">
+                                    <option value="updated">Newest</option>
+                                    <option value="stars">Most stars</option>
+                                    <option value="name">A–Z</option>
+                                </select>
+                            </div>
+                            <div id="github-repos" class="repo-grid" aria-live="polite"></div>
+                            <div class="repo-footer">
+                                <p id="repo-count" class="muted"></p>
+                                <button type="button" id="repo-more" class="button button-ghost" hidden>Show more</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <section id="experience-section">
-            <h2>Experience</h2>
-            <div class="item">
-                <h3>AXA Internship</h3>
-                <p>One-month internship in August 2025.</p>
+        <!-- APIs 2–4: weather, quote and news -->
+        <div id="live" class="section-group">
+            <div class="group-heading reveal">
+                <p class="group-label">Live dashboard</p>
+                <p class="block-intro">Everything here is fetched from public APIs while you watch. Try searching a city or switching the news topic.</p>
             </div>
-            <div class="item">
-                <h3>ArpuPlus Internship</h3>
-                <p>One-month internship in August 2026.</p>
+            <div class="grid-2">
+                <section id="weather-section" class="weather-card reveal" data-sky="clear-day">
+                    <div class="block-heading">
+                        <h2>Weather</h2>
+                        <span class="live-badge">Live</span>
+                    </div>
+                    <form id="weather-form" class="weather-form">
+                        <label class="visually-hidden" for="city-input">City</label>
+                        <input id="city-input" name="city" type="text" placeholder="Search any city…" autocomplete="off" required>
+                        <button type="submit" class="button">Search</button>
+                    </form>
+                    <div class="city-chips" aria-label="Quick city picks">
+                        <button type="button" class="chip" data-city="Cairo">Cairo</button>
+                        <button type="button" class="chip" data-city="London">London</button>
+                        <button type="button" class="chip" data-city="New York">New York</button>
+                        <button type="button" class="chip" data-city="Tokyo">Tokyo</button>
+                    </div>
+                    <div id="weather-output" aria-live="polite"></div>
+                </section>
+
+                <section id="quote-section" class="quote-card reveal">
+                    <div class="block-heading">
+                        <h2>Quote of the moment</h2>
+                        <span class="live-badge">Live</span>
+                    </div>
+                    <div id="quote-output" aria-live="polite"></div>
+                    <div class="quote-actions">
+                        <button type="button" id="quote-new" class="button">New quote</button>
+                        <button type="button" id="quote-copy" class="button button-ghost">Copy</button>
+                        <button type="button" id="quote-share" class="button button-ghost">Share</button>
+                    </div>
+                </section>
+
+                <section id="news-section" class="span-2 reveal">
+                    <div class="block-heading">
+                        <h2>Latest tech news</h2>
+                        <span class="live-badge">Live</span>
+                    </div>
+                    <div class="tabs" role="tablist" aria-label="News topics">
+                        <button type="button" role="tab" class="tab" data-topic="AI" aria-selected="true">AI</button>
+                        <button type="button" role="tab" class="tab" data-topic="JavaScript" aria-selected="false">Web Dev</button>
+                        <button type="button" role="tab" class="tab" data-topic="database" aria-selected="false">Databases</button>
+                        <button type="button" role="tab" class="tab" data-topic="security" aria-selected="false">Security</button>
+                    </div>
+                    <div id="news-output" class="news-list" role="tabpanel" aria-live="polite"></div>
+                </section>
             </div>
+        </div>
+
+        <!-- A plain-language explanation for every visitor, with details for developers -->
+        <section id="how-section" class="span-full reveal">
+            <h2>How this site works</h2>
+            <p class="block-intro">Some parts of this page are not written by hand. They ask other services for fresh information each time you visit.</p>
+            <div class="cards-4">
+                <div class="how-card"><span class="how-icon" aria-hidden="true">🐙</span><h3>GitHub</h3><p>Lists my real coding projects and works out which languages I use most.</p></div>
+                <div class="how-card"><span class="how-icon" aria-hidden="true">⛅</span><h3>Open-Meteo</h3><p>Finds any city you type and shows its weather right now plus the next three days.</p></div>
+                <div class="how-card"><span class="how-icon" aria-hidden="true">💬</span><h3>DummyJSON Quotes</h3><p>Hands back a random motivational quote whenever you press the button.</p></div>
+                <div class="how-card"><span class="how-icon" aria-hidden="true">📰</span><h3>Hacker News</h3><p>Shows the newest popular tech stories for the topic you pick.</p></div>
+            </div>
+            <details class="tech-details">
+                <summary>Technical details for developers</summary>
+                <ul>
+                    <li>Plain HTML, CSS and JavaScript, no frameworks. Data code lives in <code>api.js</code>, rendering in <code>widgets.js</code>, page interactions in <code>script.js</code>.</li>
+                    <li>Every request goes through one <code>fetchJSON()</code> helper using <code>async/await</code>, with a 10-second timeout (<code>AbortController</code>) and friendly error messages.</li>
+                    <li>Each widget shows skeleton placeholders while loading and a Retry button if a request fails. Widgets load independently, so one failing API never breaks the others.</li>
+                    <li>GitHub responses are cached in <code>sessionStorage</code> for 10 minutes to stay under GitHub's 60 requests/hour limit.</li>
+                    <li>Theme, last city, news topic and added skills are remembered with <code>localStorage</code>.</li>
+                    <li>Accessible: skip link, keyboard-friendly tabs and menus, <code>aria-live</code> updates, and animations switch off when "reduce motion" is on.</li>
+                </ul>
+            </details>
         </section>
 
-        <section id="certifications-section">
-            <div class="section-heading">
-                <h2>Certifications and Achievements</h2>
-                <button type="button" class="section-toggle" aria-expanded="true" aria-controls="certifications-content">Hide</button>
-            </div>
-            <div id="certifications-content" class="section-content">
-            <div class="item">
-                <h3>SQL Fundamentals Certificate</h3>
-                <p>Completed introductory training covering database tables, SELECT queries, joins, and basic data organization.</p>
-            </div>
-            <div class="item">
-                <h3>Web Development Course Project</h3>
-                <p>Created and published a personal CV website using semantic HTML, a separate CSS file, and responsive page styling.</p>
-            </div>
-            <div class="item">
-                <h3>AUC Computer Science Coursework</h3>
-                <p>Completed coursework and assignments involving programming logic, problem solving, databases, and web systems.</p>
-            </div>
-            </div>
-        </section>
-
-        <section id="contact-section">
+        <section id="contact-section" class="span-full reveal">
             <h2>Contact Information</h2>
             <p>Email: <a href="mailto:cherifsameh@aucegypt.edu">cherifsameh@aucegypt.edu</a></p>
-            <!-- The form checks the fields in JavaScript -->
+            <!-- The form checks the fields in JavaScript, then opens a ready-to-send email -->
             <form id="contact-form" class="contact-form" novalidate>
                 <h3>Send a message</h3>
                 <label for="contact-name">Name</label>
@@ -143,11 +305,20 @@
                 <label for="contact-email">Email</label>
                 <input id="contact-email" name="email" type="email" autocomplete="email" required>
                 <label for="contact-message">Message</label>
-                <textarea id="contact-message" name="message" rows="4" required></textarea>
+                <textarea id="contact-message" name="message" rows="4" maxlength="1000" required></textarea>
+                <p class="char-count"><span id="message-count">0</span>/1000</p>
                 <button type="submit" class="button">Send message</button>
                 <p id="contact-feedback" class="form-feedback" aria-live="polite"></p>
             </form>
         </section>
     </main>
+
+    <footer class="site-footer">
+        <p>© <span id="year">2026</span> Cherif Mikhail · Built with HTML, CSS &amp; JavaScript</p>
+        <p class="muted">Live data from GitHub, Open-Meteo, DummyJSON and Hacker News</p>
+    </footer>
+
+    <button type="button" id="back-to-top" class="back-to-top" aria-label="Back to top" hidden>↑</button>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
 </body>
 </html>
