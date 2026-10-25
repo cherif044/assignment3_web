@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cherif Mikhail CV</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <!-- The intro at the top of the page -->
+    <header class="top-section">
+        <img src="images/avatar.jpeg" alt="Professional avatar of Cherif Mikhail" class="profile-image">
+        <div>
+            <p class="eyebrow">PERSONAL PROFILE</p>
+            <h1>Cherif Mikhail</h1>
+            <p class="title">Computer Science Student at AUC</p>
+            <p class="bio">
+                I am a Computer Science student at The American University in Cairo.
+                I am interested in web systems, databases, automation, and building
+                simple useful projects that solve real problems.
+            </p>
+        </div>
+    </header>
+
+    <!-- Small controls for the welcome note and page theme -->
+    <div class="page-controls" aria-label="Page controls">
+        <p id="welcome-message" class="welcome-message" role="status"></p>
+        <button type="button" id="theme-toggle" class="button button-secondary" aria-pressed="false">Switch to dark mode</button>
+    </div>
+
+    <!-- The usual CV sections start here -->
+    <main>
+        <section id="education-section">
+            <h2>Education</h2>
+            <div class="item">
+                <h3>The American University in Cairo</h3>
+                <p>Bachelor's Degree in Computer Science</p>
+            </div>
+            <div class="item">
+                <h3>BRS School</h3>
+                <p>High School Education</p>
+            </div>
+        </section>
+
+        <section id="skills-section">
+            <div class="section-heading">
+                <h2>Skills</h2>
+                <button type="button" class="section-toggle" aria-expanded="true" aria-controls="skills-content">Hide</button>
+            </div>
+            <div id="skills-content" class="section-content">
+            <ul class="skills-list">
+                <li>C++</li>
+                <li>SQL</li>
+                <li>n8n</li>
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>GitHub</li>
+                <li>Problem Solving</li>
+                <li>Database Design</li>
+            </ul>
+            <!-- New skills show up in the list above -->
+            <form id="skill-form" class="skill-form">
+                <label for="skill-input">Add a skill</label>
+                <div class="inline-form">
+                    <input id="skill-input" name="skill" type="text" maxlength="40" placeholder="e.g. JavaScript" required>
+                    <button type="submit" class="button">Add skill</button>
+                </div>
+                <p id="skill-feedback" class="form-feedback" aria-live="polite"></p>
+            </form>
+            </div>
+        </section>
+
+        <section id="projects-section">
+            <div class="section-heading">
+                <h2>Projects</h2>
+                <button type="button" class="section-toggle" aria-expanded="true" aria-controls="projects-content">Hide</button>
+            </div>
+            <div id="projects-content" class="section-content">
+            <div class="item">
+                <h3>Student Course Planner</h3>
+                <p>Designed a simple course planning page to help students organize current courses, credit hours, and weekly study priorities.</p>
+                <!-- Extra project notes stay tucked away until clicked -->
+                <button type="button" class="project-toggle" aria-expanded="false">Show project details</button>
+                <p class="project-details" hidden>Focused on clear course organization, credit-hour tracking, and weekly study planning in one place.</p>
+            </div>
+            <div class="item">
+                <h3>Library Database System</h3>
+                <p>Built a small SQL database for books, students, borrowing records, and search queries using clear table relationships.</p>
+                <button type="button" class="project-toggle" aria-expanded="false">Show project details</button>
+                <p class="project-details" hidden>Organized library data around related records for books, students, and borrowing activity.</p>
+            </div>
+            <div class="item">
+                <h3>Internship Task Automation</h3>
+                <p>Created an n8n workflow concept for tracking form submissions, sending email updates, and saving records automatically.</p>
+                <button type="button" class="project-toggle" aria-expanded="false">Show project details</button>
+                <p class="project-details" hidden>Connected form submissions to email notifications and automatic record keeping.</p>
+            </div>
+            </div>
+        </section>
+
+        <section id="experience-section">
+            <h2>Experience</h2>
+            <div class="item">
+                <h3>AXA Internship</h3>
+                <p>One-month internship in August 2025.</p>
+            </div>
+            <div class="item">
+                <h3>ArpuPlus Internship</h3>
+                <p>One-month internship in August 2026.</p>
+            </div>
+        </section>
+
+        <section id="certifications-section">
+            <div class="section-heading">
+                <h2>Certifications and Achievements</h2>
+                <button type="button" class="section-toggle" aria-expanded="true" aria-controls="certifications-content">Hide</button>
+            </div>
+            <div id="certifications-content" class="section-content">
+            <div class="item">
+                <h3>SQL Fundamentals Certificate</h3>
+                <p>Completed introductory training covering database tables, SELECT queries, joins, and basic data organization.</p>
+            </div>
+            <div class="item">
+                <h3>Web Development Course Project</h3>
+                <p>Created and published a personal CV website using semantic HTML, a separate CSS file, and responsive page styling.</p>
+            </div>
+            <div class="item">
+                <h3>AUC Computer Science Coursework</h3>
+                <p>Completed coursework and assignments involving programming logic, problem solving, databases, and web systems.</p>
+            </div>
+            </div>
+        </section>
+
+        <section id="contact-section">
+            <h2>Contact Information</h2>
+            <p>Email: <a href="mailto:cherifsameh@aucegypt.edu">cherifsameh@aucegypt.edu</a></p>
+            <!-- The form checks the fields in JavaScript -->
+            <form id="contact-form" class="contact-form" novalidate>
+                <h3>Send a message</h3>
+                <label for="contact-name">Name</label>
+                <input id="contact-name" name="name" type="text" autocomplete="name" required>
+                <label for="contact-email">Email</label>
+                <input id="contact-email" name="email" type="email" autocomplete="email" required>
+                <label for="contact-message">Message</label>
+                <textarea id="contact-message" name="message" rows="4" required></textarea>
+                <button type="submit" class="button">Send message</button>
+                <p id="contact-feedback" class="form-feedback" aria-live="polite"></p>
+            </form>
+        </section>
+    </main>
+</body>
+</html>
