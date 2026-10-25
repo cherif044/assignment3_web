@@ -100,9 +100,6 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(tick, 2000);
     }
 
-    // Save the page as a PDF using the browser's print dialog (styles.css has a print layout)
-    document.querySelector("#download-cv").addEventListener("click", () => window.print());
-
     // Show or tuck away these sections when needed
     document.querySelectorAll(".section-toggle").forEach((button) => {
         button.addEventListener("click", () => {

@@ -41,6 +41,7 @@ api.js       Talks to the four APIs (fetch + async/await). No page code here.
 widgets.js   Draws the live sections: loading placeholders, errors, results
 script.js    Page interactions from Assignment 2 plus the new navigation
 images/      Profile picture
+Cherif-Mikhail-CV.pdf   The CV that the "Download CV (PDF)" button downloads
 link.txt     Live website URL
 
 
@@ -64,7 +65,7 @@ For everyone:
 - Weather card that changes colour with the sky
 - Language chart built from my GitHub repositories
 - Sections fade in while scrolling, a reading progress bar, back-to-top button
-- "Download CV (PDF)" button that prints a clean CV-only version
+- "Download CV (PDF)" button that downloads my CV as a PDF file
 - "How this site works" section explaining the live data in plain words
 - Contact form that opens your email app with the message already written
 - Dark mode
